@@ -19,7 +19,7 @@ const User1: Person ={
   ] 
 };
 
-const role: [number, string] = [3, 'admin' ]
+const role: Role = [3, 'admin' ]
 User1.roles.push(role);
 // User1.role[1] = 10;
 // User1.role = [0, 'admin', 'user'];
