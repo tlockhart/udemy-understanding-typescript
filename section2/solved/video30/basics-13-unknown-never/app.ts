@@ -7,6 +7,7 @@ if (typeof userInput === 'string') {
   userName = userInput;
 }
 
+// Function never returns a value.  It only throws an error
 function generateError(message: string, code: number): never {
   throw { message: message, errorCode: code };
   // while (true) {}
