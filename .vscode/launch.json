@@ -10,7 +10,7 @@
             "type": "msedge",
             "url": "http://localhost:5500/section3/solved/video45/config-04-chrome-debugging/index.html",
             "webRoot": "${workspaceFolder}"
-        }
+        },
         // {
         //     "name": "Launch Edge against local",
         //     "request": "launch",
@@ -32,6 +32,5 @@
         //     "url": "http://localhost:5500/section3/solved/video45/config-04-chrome-debugging/index.html",
         //     "webRoot": "${workspaceFolder}"
         // },
-
     ]
 }
