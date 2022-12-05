@@ -23,6 +23,7 @@ console.log(combineValues(8, 8));
 
 // let someValue: undefined;
 
+// Pass in an anonymous function as the third parameter
 addAndHandle(10, 20, (result) => {
   console.log(result);
 });
