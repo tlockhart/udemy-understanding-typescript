@@ -14,5 +14,15 @@ function clickHandler(message: string) {
 }
 // a comment
 if (button) {
+  /**********************
+   BINDING: If the clickHandler is a method inside a class you would bind the handler to keyword "this", using clickHandler.bind(this.displayName, paramater);
+  
+   This refers to the object (button) that is calling the function
+  
+   Bind manually associates keyword "this" with the clickHandler that will be executed
+  
+   However, since there is no class, there is no need to bind that clickHandler to anything.  Therefore, you can bind the clickHander to null
+  // Binding Explanation: https://www.youtube.com/watch?v=Pv9flm-80vM
+  ***********************************************/
   button.addEventListener('click', clickHandler.bind(null, "You're welcome!"));
 }
