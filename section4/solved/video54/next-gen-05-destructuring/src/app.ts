@@ -53,8 +53,9 @@ console.log(addedNumbers);
 
 const [hobby1, hobby2, ...remainingHobbies] = hobbies;
 
-console.log(hobbies, hobby1, hobby2);
+console.log("HobbiesObject:", hobbies, "Hobbies1:", hobby1, "Hobbies2:", hobby2, "RemainingHobbies:", remainingHobbies);
 
+// Use the alias userName, when referring to firstName
 const { firstName: userName, age } = person;
 
-console.log(userName, age, person);
+console.log("UserName:", userName, "Age:", age, "PersonObject:", person);
