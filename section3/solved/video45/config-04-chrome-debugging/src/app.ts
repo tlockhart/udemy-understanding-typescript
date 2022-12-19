@@ -18,7 +18,7 @@ function clickHandler( message1: string) {
   const message2 = `inputValue: ${inputValue}`;
   console.log(`message2: ${message2}`);
   const message3 = nestedFunction();
-  console.log(message3);
+  console.log(`message3: ${message3}`);
 }
 // a comment
 if (button) {
