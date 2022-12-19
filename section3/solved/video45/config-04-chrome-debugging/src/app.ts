@@ -8,15 +8,15 @@ function add(n1: number, n2: number) {
   return null;
 }
 function nestedFunction() {
-  const status = "Executing nestedFunction"
+  const status = "Executed nestedFunction"
   return status;
 }
 
 function clickHandler( message1: string) {
-  console.log(message1);
+  console.log(`message1: ${message1}`);
   const inputValue = (<HTMLInputElement>document.getElementById("fname")).value;
   const message2 = `inputValue: ${inputValue}`;
-  console.log(message2);
+  console.log(`message2: ${message2}`);
   const message3 = nestedFunction();
   console.log(message3);
 }
