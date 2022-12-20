@@ -1,7 +1,7 @@
 
 
 /***********************************/
-// Global Variable
+// Example1: Global Variable
 var result: number | undefined;
 /******************************
  * Example 1: var result global scope
