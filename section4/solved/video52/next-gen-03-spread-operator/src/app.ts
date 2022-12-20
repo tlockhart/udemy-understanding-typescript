@@ -1,48 +1,36 @@
-const userName = 'Max';
-// userName = 'Maximilian';
-let age = 30;
-
-age = 29;
-
-// function add(a: number, b: number) {
-//   let result;
-//   result = a + b;
-//   return result;
-// }
-
-// if (age > 20) {
-//   let isOld = true;
-// }
-
-// console.log(isOld);
-
-// console.log(result);
-
-const add = (a: number, b: number = 1) => a + b;
-
-const printOutput: (a: number | string) => void = output => console.log(output);
-
-const button = document.querySelector('button');
-
-if (button) {
-  button.addEventListener('click', event => console.log(event));
-}
-
-printOutput(add(5));
-
-const hobbies = ['Sports', 'Cooking'];
+// Example 1: Concatenating values to a list with the Spread Operator:
+/*******************************************************/
 const activeHobbies = ['Hiking'];
+const newHobbies = ['Sports', 'Cooking'];
 
-activeHobbies.push(...hobbies);
+// activeHobbies.push(newHobbies[0], newHobbies[1]);
+activeHobbies.push(...newHobbies);
+console.log("ActiveHobbies:", activeHobbies);
+/*******************************************************/
 
+// Example 2: Object Reference Pointers verses Shallow Copy using the Spread Operator:
+/***********************************/
 const person = {
   name: "Tony",
-  age: 130
+  age: 130,
+  species: "Alien"
 };
-
+console.log("OriginalPerson:", person);
 
 const personShallowCopy = { ...person, gender: "male"};
-const personReferencePointer = person;
-
 console.log("PersonShallowCopy:", personShallowCopy);
-console.log("PersonReference:", personReferencePointer);
+
+const personReferencePointer = person;
+console.log("PersonReferencePointer:", personReferencePointer);
+
+personReferencePointer.species= "Human";
+console.log("NewPerson", person);
+
+// const nestedObj = {
+//   name: "Tony",
+//   location: {
+//     state: "Georgia",
+//     city: "Atlanta",
+//   }
+// };
+/*******************************************************/
