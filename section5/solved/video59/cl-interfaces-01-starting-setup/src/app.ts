@@ -1,13 +1,15 @@
 class Department {
+    // Instance variable: use the "this.name" to reference variables throughout class
     name: string;
 
-    // function used to inialize instance variables
+    // Special function used to initialize instance variables with a value
     constructor(n: string) {
         this.name = n;
     }
 }
 
-// instantiate a new Department
+// Instantiate, or create a new instance of the Department class
 const accounting = new Department('Accounting');
+
 // Print the accounting object
 console.log(accounting);

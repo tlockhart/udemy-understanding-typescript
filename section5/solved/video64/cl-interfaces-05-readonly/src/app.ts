@@ -1,12 +1,8 @@
 class Department {
-  // private readonly id: string;
-  // private name: string;
   private employees: string[] = [];
 
-  // readonly makes sure the variable can not be changed after initialization
+  /* Example1: readonly makes sure the variable can not be changed after initialization */
   constructor(private readonly id: string, public name: string) {
-    // this.id = id;
-    // this.name = n;
   }
 
   describe(this: Department) {
@@ -14,8 +10,9 @@ class Department {
   }
 
   addEmployee(employee: string) {
-    // id is readonly and can not be changed
+    // Example1: id is readonly and can not be changed
     // this.id = 'd2';
+    
     this.employees.push(employee);
   }
 

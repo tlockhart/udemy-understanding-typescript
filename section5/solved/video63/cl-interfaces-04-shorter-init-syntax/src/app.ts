@@ -1,12 +1,18 @@
 class Department {
-  // private id: string;
-  // private name: string;
+  
   private employees: string[] = [];
 
-// shorthand declaration/initialization of instance variables, in the constructor parameters
+/** Example1: Step1: shorthand declaration/initialization of instance variables, 
+ * in the constructor parameters, instead or rewriting them
+ *  private id: string;
+ *  private name: string;
+ */
   constructor(private id: string, public name: string) {
-    // this.id = id;
-    // this.name = n;
+    /** Example1: Step2: instance variable will be automatically initialized from the contructor 
+     * Code below is unecessary
+     * this.id = id;
+     * this.name = n;
+     */
   }
 
   describe(this: Department) {
@@ -14,7 +20,6 @@ class Department {
   }
 
   addEmployee(employee: string) {
-    // validation etc
     this.employees.push(employee);
   }
 
@@ -28,13 +33,7 @@ const accounting = new Department('d1', 'Accounting');
 
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
-
-// accounting.employees[2] = 'Anna';
-
 accounting.describe();
+
 accounting.name = 'NEW NAME';
 accounting.printEmployeeInformation();
-
-// const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
-
-// accountingCopy.describe();
