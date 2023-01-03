@@ -12,7 +12,7 @@ class Department {
   addEmployee(employee: string) {
     // Example1: id is readonly and can not be changed
     // this.id = 'd2';
-    
+
     this.employees.push(employee);
   }
 
@@ -23,11 +23,8 @@ class Department {
 }
 
 const accounting = new Department('d1', 'Accounting');
-
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
-
-// accounting.employees[2] = 'Anna';
 
 accounting.describe();
 accounting.name = 'NEW NAME';
