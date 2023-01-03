@@ -5,7 +5,7 @@ class Department {
   // employees can only be accessed via public methods outside the class (via the object instance)
   private employees: string[] = [];
 
-  /** NOTE: Public properties are not secure.  They can be updated outside of the app.
+  /** Example 1: Public properties are not secure.  They can be updated outside of the app.
    *  Variables are public by default, allowing direct access and modification
    *   name: string; 
    *  employees: string[] = [];
@@ -23,13 +23,14 @@ class Department {
     this.employees.push(employee);
   }
 
+  // Default public access that can access private date members
   printEmployeeInformation() {
     console.log(this.employees.length);
     console.log(this.employees);
   }
 }
 
-// Declare a new Department instance
+// Instantiate a new Department instance
 const accounting = new Department('Accounting');
 
 // Add employees
