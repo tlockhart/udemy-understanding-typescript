@@ -22,6 +22,8 @@ console.log(`${accounting1.describe()}`);
 console.log(`${payroll1.describe()}`);
 /***************************/
 // Example2: Classes
+/***************************/
+// Step1: Create the class (Blueprint)
 class Department {
   name: string;
 
@@ -61,10 +63,11 @@ const payroll2 = { name: 'Payroll2', describe: accounting2.describe };
 payroll2.describe();
 
 /** Recommended Approach: 
- * Step1: Instantiate a new insance.  
-*  Step2: Then call the method from the mew instance
+ * Step1: Create the class (Blueprint)
+ * Step2: Instantiate a new instance of the class.  
+*  Step3: Then call the method from the new instance
 */ 
-// Step1: Instantiate a new instance
+// Step2: Instantiate a new instance
 const payroll3 = new Department('Payroll3');
-// Step2: Call the method from the new instance
+// Step3: Call the method from the new instance
 payroll3.describe();
