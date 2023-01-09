@@ -1,11 +1,31 @@
 class Department {
+  static fiscalYear = 2023;
+
   protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
+    // Example2: Fiscal Year can not be access with this
+    // console.log("Fiscal Year:", this.fiscalYear);
+    console.log("Constructor: Fiscal Year:", Department.fiscalYear);
+  }
+
+  // Example1: Static method that can be accessed directly from the class, not an instance
+  static createEmployee(name: string) {
+    return {name: name};
   }
 
   describe(this: Department) {
     console.log(`Department (${this.id}): ${this.name}`);
+    //Example 3: You can access a static property from a Nonstatic method
+    console.log("Fiscal Year from Nonstatic Method:", Department.fiscalYear);
+    //  console.log("Fiscal Year:", this.fiscalYear);
+  }
+
+  // Can't use a this reference inside a static method
+  static returnFiscalYear() {
+    //Example 4: You can access a static property from a Static method
+    console.log("Fiscal Year from Static Method:", Department.fiscalYear);
+    //  console.log("Fiscal Year:", this.fiscalYear);
   }
 
   addEmployee(employee: string) {
@@ -30,7 +50,6 @@ class ITDepartment extends Department {
 class AccountingDepartment extends Department {
   private lastReport: string;
 
-  // Example1: Getters must return a value.  mostRecentReport  returns the last report
   get mostRecentReport() {
     if (this.lastReport) {
       // Getters must return something
@@ -39,10 +58,6 @@ class AccountingDepartment extends Department {
     throw new Error('No report found.');
   }
 
-  /**
-   * Example2: Setters must be passed a value.  mostRecentReport 
-   * sets the value of the lastReport instance variable. 
-   */
   set mostRecentReport(value: string) {
     if (!value) {
       throw new Error('Please pass in a valid value!');
@@ -72,36 +87,19 @@ class AccountingDepartment extends Department {
   }
 }
 
+// Example1: Calling a static method
+const employee1 = Department.createEmployee("Tony");
+console.log("Static Properties: Employee:", employee1, "; Fiscal Year:", Department.fiscalYear);
+
 const it = new ITDepartment('d1', ['Max']);
 
 it.addEmployee('Max');
 it.addEmployee('Manu');
 
-// it.employees[2] = 'Anna';
-
+// Exampl2: Can access fiscalYear from nonstatic method
 it.describe();
+// Exampl3: Can not use this inside a static method, but can access a static property, via className
+ITDepartment.returnFiscalYear();
+
 it.name = 'NEW NAME';
 it.printEmployeeInformation();
-
-console.log(it);
-
-const accounting = new AccountingDepartment('d2', []);
-
-/**
- * Example2: Call a setter as if you are setting a property on a class instance.
- * The value you are assigning will be passed to the mostRecentReport method 
- * as an argument 
- */
-accounting.mostRecentReport = 'Year End Report';
-
-// Note: Must add a report before calling mos RecentReport
-accounting.addReport('Something went wrong...');
-
-// Example1: Call a mostRecentReport as a property of the accounting AcountantDepartment  instance
-console.log(accounting.mostRecentReport);
-
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
-
-accounting.printReports();
-accounting.printEmployeeInformation();

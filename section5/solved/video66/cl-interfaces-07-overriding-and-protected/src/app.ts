@@ -8,11 +8,14 @@ interface ModifierInterface {
 }
 
 // Department interface inherits the properties in Modifer Interface.
-// NOTE: No call the ModifierInterface is neccessary with interfaces
+// NOTE: No super call to the base interface  constructor is used with interfaces
 interface DepartmentInterface extends ModifierInterface {
   admins?: string[];
 
-  // Note: JavaScript only have public modifiers
+  /**
+   * Note: JavaScript only have public modifiers, private members are added via 
+   * the index signature in the ModifierInterface
+   */
   // employees: string[],
   //  id: string,
 
@@ -23,10 +26,17 @@ interface DepartmentInterface extends ModifierInterface {
 }
 
 class Department implements DepartmentInterface {
-  /*private classes are only available from inside the class, 
-  not classes that inherit from it*/
+  /**
+   * Private classe properties are only available from 
+   * inside the class it is defined in, not classes that 
+   * inherit from it 
+   **/
   // private readonly id: string;
 
+  /** 
+   * Example1: Protected class properties are available on the base 
+   * class and the subclasses that extend it.
+   **/
   protected employees: string[] = [];
   constructor(private readonly id: string, public name: string) {
     // this.id = id;
@@ -61,6 +71,7 @@ class AccountingDepartment extends Department {
     super(id, 'Accounting');
   }
 
+  /* Example2: Overiding the addEmployee method in the Department class, if name is not 'Max' */
   addEmployee(name: string) {
     if (name === 'Max') {
       return;
@@ -86,12 +97,16 @@ it.printEmployeeInformation();
 console.log(it);
 
 const accounting = new AccountingDepartment('d2', []);
-accounting.addReport('Something went wrong...');
+// accounting.addReport('Something went wrong...');
+
+/* Max will not be added based on method logic */
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
 accounting.printReports();
 accounting.printEmployeeInformation();
+console.log(`Accounting: ${accounting.name}`); 
 
+/* Example3: It is possible to declare a simple object with the same structure as a class */
 const sampleDepartment: DepartmentInterface = {
   admins: ['CreativeTech'],
   employees: ['Tony', 'Julie'],
@@ -109,7 +124,6 @@ const sampleDepartment: DepartmentInterface = {
 }!
 
 console.log(`SampleDepartment: ${sampleDepartment.name}; 
-Accounting: ${accounting.name}; 
 Describe: ${sampleDepartment && sampleDepartment?.addEmployee && sampleDepartment.addEmployee?.('Tod')}; 
 Name: ${sampleDepartment && sampleDepartment?.describe && sampleDepartment.describe?.(sampleDepartment)}`);
 
