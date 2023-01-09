@@ -1,24 +1,29 @@
+//Example 2: Classes with abstract methods must be declared abstract
 abstract class Department {
   static fiscalYear = 2020;
-  // private readonly id: string;
-  // private name: string;
   protected employees: string[] = [];
 
+  /**
+   * Any variables (id, employees) that should be inherited by
+   *  the subclass must be protected or public
+   * @param id
+   * @param name 
+   */
   constructor(protected readonly id: string, public name: string) {
-    // this.id = id;
-    // this.name = n;
-    // console.log(Department.fiscalYear);
   }
 
   static createEmployee(name: string) {
     return { name: name };
   }
 
+  /**
+   * Example1: Abstract method signature forces any classes 
+   * that inherit Department to implement a concrete describe
+   * method
+   */
   abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
-    // validation etc
-    // this.id = 'd2';
     this.employees.push(employee);
   }
 
@@ -35,6 +40,7 @@ class ITDepartment extends Department {
     this.admins = admins;
   }
 
+   // Example1: Implementation of abstract method describe, per Department inheritance
   describe() {
     console.log('IT Department - ID: ' + this.id);
   }
@@ -62,6 +68,7 @@ class AccountingDepartment extends Department {
     this.lastReport = reports[0];
   }
 
+  // Example1: Implementation of abstract method describe, per Department inheritance
   describe() {
     console.log('Accounting Department - ID: ' + this.id);
   }
@@ -84,34 +91,24 @@ class AccountingDepartment extends Department {
 }
 
 const employee1 = Department.createEmployee('Max');
-console.log(employee1, Department.fiscalYear);
+// console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment('d1', ['Max']);
-
 it.addEmployee('Max');
 it.addEmployee('Manu');
 
-// it.employees[2] = 'Anna';
-
+// Example1: Call ITDepartements implementation of describe
 it.describe();
 it.name = 'NEW NAME';
-it.printEmployeeInformation();
-
-console.log(it);
+// it.printEmployeeInformation();
+// console.log(it);
 
 const accounting = new AccountingDepartment('d2', []);
-
 accounting.mostRecentReport = 'Year End Report';
 accounting.addReport('Something went wrong...');
-console.log(accounting.mostRecentReport);
-
+// console.log(accounting.mostRecentReport);
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
 
-// accounting.printReports();
-// accounting.printEmployeeInformation();
+// Example1: Call AccountingDepartements implementation of describe
 accounting.describe();
-
-// const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
-
-// accountingCopy.describe();
