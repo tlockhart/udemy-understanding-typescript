@@ -13,17 +13,25 @@ class Department {
   }
 
   printEmployeeInformation() {
-    console.log(this.employees.length);
-    console.log(this.employees);
+    console.log(`${this.name}: Number of Employees: ${this.employees.length}`);
+    console.log(`${this.name}: Employees Array: ${this.employees}`);
   }
 }
 
-/* Example 1: Inheritance: Add Department properties to ITDepartement */
+/** 
+ * Example 1: Inheritance: The ITDeparment class inherits 
+ * all the properties and methods of the Department class.
+ *  NOTE: Classes can only inherit from one class.
+*/
 class ITDepartment extends Department {
-  admins: string[];
-  constructor(id: string, admins: string[]) {
-    /* Note: When you inherit the base class, always call the super method first in the constructor
-      Note: Forward id, and "IT" to the constructor of the Department class */
+  // admins: string[];
+  constructor(id: string, public admins: string[]) {
+    /**
+     * Example 2: super: All subclasses that inherit from a parent 
+     * class must call the parents constructor, using the keyword
+     * super first, in the subclass's constructor.  All arguments passed 
+     * to super will be passed into the parent classes constructor.
+     */
     super(id, 'IT');
 
     // Note: "this" can only be called after calling super
@@ -36,22 +44,37 @@ class AccountingDepartment extends Department {
     super(id, 'Accounting');
   }
 
+  /**
+   * Example 3: addReport - New method only 
+   * available in AccountingDepartment instances.
+   * @param text
+   */
   addReport(text: string) {
     this.reports.push(text);
   }
 
-  printReports() {
-    console.log(this.reports);
+  /**
+   * Example 4: printReports - New method only
+   *  available in AccountingDepartment instances.
+   */
+   printReports() {
+    console.log("Accounting:", this.reports);
   }
 }
 
-// Instantiated a new instance of the ITDepartment
+/**
+ * Example1: The instantiated it instance of  
+ * the ITDepartment inherits the employees  
+ * property, and describe, addEmployee, and 
+ * printEmployeeInformation methods from
+ * the Department class.
+ **/
 const it = new ITDepartment('d1', ['Max']);
 it.addEmployee('Max');
 it.addEmployee('Manu');
 
 it.describe();
-it.name = 'NEW NAME';
+it.name = 'IT2';
 it.printEmployeeInformation();
 
 console.log(it);

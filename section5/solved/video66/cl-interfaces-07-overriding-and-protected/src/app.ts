@@ -34,7 +34,7 @@ class Department implements DepartmentInterface {
   // private readonly id: string;
 
   /** 
-   * Example1: Protected class properties are available on the base 
+   * Example1: Protected class properties (employees) are available on the base 
    * class and the subclasses that extend it.
    **/
   protected employees: string[] = [];
@@ -71,7 +71,9 @@ class AccountingDepartment extends Department {
     super(id, 'Accounting');
   }
 
-  /* Example2: Overiding the addEmployee method in the Department class, if name is not 'Max' */
+  /** 
+   * Example2: Overidding the addEmployee method in the Department class, if name is not 'Max' 
+   **/
   addEmployee(name: string) {
     if (name === 'Max') {
       return;
@@ -97,16 +99,21 @@ it.printEmployeeInformation();
 console.log(it);
 
 const accounting = new AccountingDepartment('d2', []);
-// accounting.addReport('Something went wrong...');
 
-/* Max will not be added based on method logic */
+/**
+ * Example 2: Max will not be added based on 
+ * overrided method logic 
+ * */
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
 accounting.printReports();
 accounting.printEmployeeInformation();
 console.log(`Accounting: ${accounting.name}`); 
+console.log("*********************");
 
-/* Example3: It is possible to declare a simple object with the same structure as a class */
+/**
+ * Advanced Example3: It is possible to declare a simple object with the same structure as a class 
+ * */
 const sampleDepartment: DepartmentInterface = {
   admins: ['CreativeTech'],
   employees: ['Tony', 'Julie'],
@@ -119,8 +126,6 @@ const sampleDepartment: DepartmentInterface = {
     sampleDepartment.employees.push(newEmployee);
     return sampleDepartment.employees
   },
-  // printEmployeeInformation: ct.printEmployeeInformation()!,
-  // brandNewProperty: null,
 }!
 
 console.log(`SampleDepartment: ${sampleDepartment.name}; 
