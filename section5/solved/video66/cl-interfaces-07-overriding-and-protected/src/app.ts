@@ -3,7 +3,7 @@
 interface ModifierInterface {
   /* Index Signature: Solves modifer issue above, Used 
      when you don't know  all the names that will be used 
-    on the propert:*/
+    on the property:*/
   [key: string]: any;
 }
 
@@ -39,8 +39,6 @@ class Department implements DepartmentInterface {
    **/
   protected employees: string[] = [];
   constructor(private readonly id: string, public name: string) {
-    // this.id = id;
-    // this.name = n;
   }
 
   describe(this: Department): void {
