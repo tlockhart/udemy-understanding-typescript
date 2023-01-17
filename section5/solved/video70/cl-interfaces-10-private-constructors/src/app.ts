@@ -36,7 +36,10 @@ class ITDepartment extends Department {
 class AccountingDepartment extends Department {
   private lastReport: string;
 
-  // Example2: Create a single static instance inside the parent class
+  /**
+   * Example1: Create a single static instance inside the parent 
+   * class that will be returned by the getInstance Method
+   */
   private static instance: AccountingDepartment;
 
   get mostRecentReport() {
@@ -54,9 +57,9 @@ class AccountingDepartment extends Department {
   }
 
   /**
-   * Example1: Adding the private modifier to the contructor of a class, will 
-   * make it a singleton. Only one instance of the Accounting Departement class 
-   * will be permitted
+   * Example2: Add the private modifier to the contructor of a class to
+   * make it a singleton. Only one instance of the Accounting Departement 
+   * class will be permitted
    */
   private constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
@@ -64,7 +67,7 @@ class AccountingDepartment extends Department {
   }
 
   /**
-   * Example2: In order to call the single instance of 
+   * Example3: In order to call the single instance of 
    * the AccountDepartment class declare a static
    * method that returns the instance
    */
@@ -100,37 +103,16 @@ class AccountingDepartment extends Department {
   }
 }
 
-const employee1 = Department.createEmployee('Max');
-// console.log(employee1, Department.fiscalYear);
-
-const it = new ITDepartment('d1', ['Max']);
-
-it.addEmployee('Max');
-it.addEmployee('Manu');
-
-// it.describe();
-it.name = 'NEW NAME';
-// it.printEmployeeInformation();
-
-// console.log(it);
-
 /** 
- * Example1: You can not instantiate a class that has been 
+ * Example4a: You can not instantiate a class that has been 
  * declared as a singleton.  Instead you must call the static
  * getInstance method on the base class
  */
 // const accounting = new AccountingDepartment('d2', []);
 
-// Example2: Call the static getInstance method of the Accounting Department to get the singleton
+// Example 4b: Call the static getInstance method of the Accounting Department to get the singleton
 const accounting = AccountingDepartment.getInstance();
 const accounting2 = AccountingDepartment.getInstance();
 
 console.log("First Instance:", accounting, "= Second Instance: ", accounting2, ";isEqual:", accounting === accounting2);
 
-// accounting.mostRecentReport = 'Year End Report';
-// accounting.addReport('Something went wrong...');
-// console.log(accounting.mostRecentReport);
-
-// accounting.addEmployee('Max');
-// accounting.addEmployee('Manu');
-// accounting.describe();
