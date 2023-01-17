@@ -1,23 +1,34 @@
 class Department {
+  // Example 2: Declare static property
   static fiscalYear = 2023;
 
   protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
-    // Example2: Fiscal Year can not be access with this
+    /**
+     * Example2: Static property fiscalYear can not be accessed 
+     * with this.  It can only be accessed by the class name
+     * in non-static constructor
+     */
     // console.log("Fiscal Year:", this.fiscalYear);
-    console.log("Constructor: Fiscal Year:", Department.fiscalYear);
+    console.log("Calling static Fiscal Year from nonstatic constructor::", Department.fiscalYear);
   }
 
-  // Example1: Static method that can be accessed directly from the class, not an instance
+  /**
+   * Example1: Declare static method that can be
+   *  accessed directly from the class, not an instance
+   */
   static createEmployee(name: string) {
+    console.log("Log static member from a static method with this keyword:", this.fiscalYear);
     return {name: name};
   }
 
   describe(this: Department) {
     console.log(`Department (${this.id}): ${this.name}`);
-    //Example 3: You can access a static property from a Nonstatic method
-    console.log("Fiscal Year from Nonstatic Method:", Department.fiscalYear);
+    /**
+     * Example 3: You can access a static property from a Nonstatic method
+     */
+    console.log("Nonstatic Method Describe Calling Static fiscalYear property:", Department.fiscalYear);
     //  console.log("Fiscal Year:", this.fiscalYear);
   }
 
@@ -87,7 +98,7 @@ class AccountingDepartment extends Department {
   }
 }
 
-// Example1: Calling a static method
+// Example1: Can call  a static method with the class name
 const employee1 = Department.createEmployee("Tony");
 console.log("Static Properties: Employee:", employee1, "; Fiscal Year:", Department.fiscalYear);
 
@@ -96,10 +107,24 @@ const it = new ITDepartment('d1', ['Max']);
 it.addEmployee('Max');
 it.addEmployee('Manu');
 
-// Exampl2: Can access fiscalYear from nonstatic method
+/**********************************
+ * Exampl2  : Can access fiscalYear from 
+ * nonstatic method using class name
+ *********************************/
 it.describe();
-// Exampl3: Can not use this inside a static method, but can access a static property, via className
+/***************************
+ * Example 2: Can not access static 
+ *  members from a class instance
+ ****************************/
+// it.fiscalYear;
+// it.returnFiscalYear();
+/***************************/
+
+/**
+ * Example 3: Can access static method from a class
+ * instance, but can access a static method, via className
+ */
 ITDepartment.returnFiscalYear();
 
-it.name = 'NEW NAME';
-it.printEmployeeInformation();
+// it.name = 'NEW NAME';
+// it.printEmployeeInformation();

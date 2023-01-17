@@ -68,22 +68,9 @@ class AccountingDepartment extends Department {
   }
 
   printReports() {
-    console.log(this.reports);
+    console.log("Print Reports:", this.reports);
   }
 }
-
-const it = new ITDepartment('d1', ['Max']);
-
-it.addEmployee('Max');
-it.addEmployee('Manu');
-
-// it.employees[2] = 'Anna';
-
-it.describe();
-it.name = 'NEW NAME';
-it.printEmployeeInformation();
-
-console.log(it);
 
 const accounting = new AccountingDepartment('d2', []);
 
@@ -95,13 +82,9 @@ const accounting = new AccountingDepartment('d2', []);
 accounting.mostRecentReport = 'Year End Report';
 
 // Note: Must add a report before calling mos RecentReport
-accounting.addReport('Something went wrong...');
+accounting.addReport('Last Report Set...');
 
 // Example1: Call a mostRecentReport as a property of the accounting AcountantDepartment  instance
-console.log(accounting.mostRecentReport);
+console.log("Get Last  Report:", accounting.mostRecentReport);
 
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
-
-accounting.printReports();
-accounting.printEmployeeInformation();
+// accounting.printReports();

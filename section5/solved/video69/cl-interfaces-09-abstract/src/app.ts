@@ -4,7 +4,7 @@ abstract class Department {
   protected employees: string[] = [];
 
   /**
-   * Any variables (id, employees) that should be inherited by
+   * Example 1: Any variables (id, employees) that should be inherited by
    *  the subclass must be protected or public
    * @param id
    * @param name 
@@ -68,7 +68,10 @@ class AccountingDepartment extends Department {
     this.lastReport = reports[0];
   }
 
-  // Example1: Implementation of abstract method describe, per Department inheritance
+  /**
+   * Example1: Implementation of abstract method describe, 
+   * per Department inheritance
+   */
   describe() {
     console.log('Accounting Department - ID: ' + this.id);
   }
@@ -90,25 +93,7 @@ class AccountingDepartment extends Department {
   }
 }
 
-const employee1 = Department.createEmployee('Max');
-// console.log(employee1, Department.fiscalYear);
-
-const it = new ITDepartment('d1', ['Max']);
-it.addEmployee('Max');
-it.addEmployee('Manu');
-
-// Example1: Call ITDepartements implementation of describe
-it.describe();
-it.name = 'NEW NAME';
-// it.printEmployeeInformation();
-// console.log(it);
-
 const accounting = new AccountingDepartment('d2', []);
-accounting.mostRecentReport = 'Year End Report';
-accounting.addReport('Something went wrong...');
-// console.log(accounting.mostRecentReport);
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
 
 // Example1: Call AccountingDepartements implementation of describe
 accounting.describe();
