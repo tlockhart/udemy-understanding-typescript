@@ -37,7 +37,7 @@ class Department implements DepartmentInterface {
    * Example1: Protected class properties (employees) are available on the base 
    * class and the subclasses that extend it.
    **/
-  protected employees: string[] = [];
+  public employees: string[] = [];
   constructor(private readonly id: string, public name: string) {
   }
 
@@ -55,6 +55,8 @@ class Department implements DepartmentInterface {
   }
 }
 
+const it2 = new Department("4", "string");
+it2.employees = [];
 class ITDepartment extends Department {
   admins: string[];
   constructor(id: string, admins: string[]) {

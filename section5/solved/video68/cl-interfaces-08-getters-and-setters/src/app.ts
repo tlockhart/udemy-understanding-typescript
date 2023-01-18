@@ -20,7 +20,7 @@ class Department {
    */
   static createEmployee(name: string) {
     console.log("Log static member from a static method with this keyword:", this.fiscalYear);
-    return {name: name};
+    Department.fiscalYear;
   }
 
   describe(this: Department) {
