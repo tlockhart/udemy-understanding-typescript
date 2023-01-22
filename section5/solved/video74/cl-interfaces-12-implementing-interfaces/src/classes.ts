@@ -1,8 +1,13 @@
 abstract class Department {
   static fiscalYear = 2020;
+  // private readonly id: string;
+  // private name: string;
   protected employees: string[] = [];
 
   constructor(protected readonly id: string, public name: string) {
+    // this.id = id;
+    // this.name = n;
+    // console.log(Department.fiscalYear);
   }
 
   static createEmployee(name: string) {
@@ -12,6 +17,8 @@ abstract class Department {
   abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
+    // validation etc
+    // this.id = 'd2';
     this.employees.push(employee);
   }
 
@@ -93,11 +100,15 @@ const it = new ITDepartment('d1', ['Max']);
 it.addEmployee('Max');
 it.addEmployee('Manu');
 
+// it.employees[2] = 'Anna';
+
 it.describe();
 it.name = 'NEW NAME';
 it.printEmployeeInformation();
 
 console.log(it);
+
+// const accounting = new AccountingDepartment('d2', []);
 const accounting = AccountingDepartment.getInstance();
 const accounting2 = AccountingDepartment.getInstance();
 
@@ -109,4 +120,11 @@ console.log(accounting.mostRecentReport);
 
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
+
+// accounting.printReports();
+// accounting.printEmployeeInformation();
 accounting.describe();
+
+// const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
+
+// accountingCopy.describe();
