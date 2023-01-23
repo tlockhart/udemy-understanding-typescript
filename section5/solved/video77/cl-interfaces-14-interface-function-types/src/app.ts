@@ -1,11 +1,19 @@
-// type AddFn = (a: number, b: number) => number;
+
+/**
+ * Example1a: Interfaces can be used to 
+ * define the structure of a function.
+ */
 interface AddFn {
   (a: number, b: number): number;
 }
 
-let add: AddFn;
+/**
+ * Example 1b: Type used to define a function
+ */
+// type AddFn = (param1:number,  param2: number) => number;
 
-add = (n1: number, n2: number) => {
+// Example 2: Declare the function add, as a type AddFn
+let add: AddFn = (n1: number, n2: number) => {
   return n1 + n2;
 };
 

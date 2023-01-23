@@ -28,6 +28,10 @@ abstract class Department {
   }
 }
 
+/**
+ * Example2: Classes can only
+ *  inherit from one class.
+ */
 class ITDepartment extends Department {
   admins: string[];
   constructor(id: string, admins: string[]) {

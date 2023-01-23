@@ -1,12 +1,21 @@
 interface Named {
   readonly name: string;
 }
-
-interface Greetable extends Named {
+interface AnotherInterface {
+  // Optional Property
+  test?: string;
+}
+/**
+ * Example1: Every class that extends
+ *  Greetable must have a name property.
+ * Interface can extend multiple interfaces
+ */
+interface Greetable extends Named, AnotherInterface {
   greet(phrase: string): void;
 }
 
 class Person implements Greetable {
+  // Named is required from Greetable
   name: string;
   age = 30;
 
