@@ -6,9 +6,9 @@ interface AnotherInterface {
   test?: string;
 }
 /**
- * Example1: Every class that extends
+ * Example1: Interfaces can extend other interfaces.
+ * Note: Every class that implements
  *  Greetable must have a name property.
- * Interface can extend multiple interfaces
  */
 interface Greetable extends Named, AnotherInterface {
   greet(phrase: string): void;

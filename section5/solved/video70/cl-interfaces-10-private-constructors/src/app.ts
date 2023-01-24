@@ -37,7 +37,7 @@ class AccountingDepartment extends Department {
   private lastReport: string;
 
   /**
-   * Example1: Create a single static instance inside the parent 
+   * Example1: Create a single static instance in the parent 
    * class that will be returned by the getInstance Method
    */
   private static instance: AccountingDepartment;
@@ -114,5 +114,6 @@ class AccountingDepartment extends Department {
 const accounting = AccountingDepartment.getInstance();
 const accounting2 = AccountingDepartment.getInstance();
 
+// Note: Both instances are equal
 console.log("First Instance:", accounting, "= Second Instance: ", accounting2, ";isEqual:", accounting === accounting2);
 

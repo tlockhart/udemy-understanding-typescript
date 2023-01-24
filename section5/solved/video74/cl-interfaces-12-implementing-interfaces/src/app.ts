@@ -1,3 +1,4 @@
+// Example 1: Greetable enforces a similar structure
 interface Greetable {
   name: string;
 

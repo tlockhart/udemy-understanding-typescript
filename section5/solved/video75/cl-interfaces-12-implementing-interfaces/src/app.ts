@@ -1,4 +1,7 @@
-// Example 1a: Interface:
+/**
+ * Example 1a: Interface: Readable can be used
+ * in intefaces  but not protected or private
+ */
 interface Greetable {
   // Note: Interfaces can not have protected or private members
   // Note: Interfaces properties can use union types
@@ -62,6 +65,7 @@ myPet.feed('Come and get your');
  * interface with a union Type
  ******************************/
 // interface dog: Playable  & Greetable ;
+
 const dog: Playable & Greetable = {
   name: "Scooby",
   game: "Fetch",
