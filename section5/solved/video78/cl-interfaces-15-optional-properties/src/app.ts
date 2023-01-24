@@ -8,7 +8,7 @@ let add: AddFn;
 
 // declare add method
 add = (n1: number, n2: number, n3: number) => {
-  return n1 + n2  * n3;
+  return n1 + n2  + n3;
 };
 
 // Example1: Optional interface properities and methods
