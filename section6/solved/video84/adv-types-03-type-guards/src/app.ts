@@ -91,6 +91,8 @@ function useVehicle(vehicle: Vehicle) {
    * if the property exists with "in" 
    */
   // if ( 'loadCargo' in vehicle) {
+  
+  // Note: Instanceof can not be used with interfaces, only classes
   if (vehicle instanceof Truck) {
     vehicle.loadCargo(1000);
   }
