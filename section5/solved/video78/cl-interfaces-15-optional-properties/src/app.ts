@@ -33,14 +33,14 @@ class Person implements Greetable {
    * Note: If default value is not supplied the 
    * value is undefined
    */
-  constructor(n?: string) {
+  constructor(n?: string | undefined) {
     if (n) {
       this.name = n;
     }
   }
 
   //Example4: How to define a method with optional params
-  greet(phrase: string) {
+  greet(phrase: string = "hello") {
     if (this.name) {
       console.log(phrase + ' ' + this.name);
     } else {
