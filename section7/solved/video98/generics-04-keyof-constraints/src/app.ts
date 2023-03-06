@@ -1,44 +1,22 @@
-// const names: Array<string> = []; // string[]
-// // names[0].split(' ');
+// Example 1: Uncertain if the obj will have a property with a key
+// function extractAndConvert(
+//   obj: object,
+//   key: string
+// ) {
+//   return 'Value: ' + obj[key];
+// }
 
-// const promise: Promise<number> = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve(10);
-//   }, 2000);
-// });
+// extractAndConvert({}, 'name');
 
-// promise.then(data => {
-//   // data.split(' ');
-// })
-
-function merge<T extends object, U extends object>(objA: T, objB: U) {
-  return Object.assign(objA, objB);
-}
-
-const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
-console.log(mergedObj);
-
-interface Lengthy {
-  length: number;
-}
-
-function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
-  let descriptionText = 'Got no value.';
-  if (element.length === 1) {
-    descriptionText = 'Got 1 element.';
-  } else if (element.length > 1) {
-    descriptionText = 'Got ' + element.length + ' elements.';
-  }
-  return [element, descriptionText];
-}
-
-console.log(countAndDescribe(['Sports', 'Cooking']));
-
+/**
+ * Example 2: use keyof in generic desc to indicate the second 
+ * param should be a key in the first
+ */
 function extractAndConvert<T extends object, U extends keyof T>(
   obj: T,
   key: U
 ) {
-  return 'Value: ' + obj[key];
+  return `Value: ${obj[key]}, ${key.toString()} is a property within the object` ;
 }
 
-extractAndConvert({ name: 'Max' }, 'name');
+console.log(extractAndConvert({ name: 'Max' }, 'name'));
