@@ -2,7 +2,7 @@
 // const names: Array<string> = ["Tony", "Max"]; // string[]
 
 // Example 2: Array as Generic, where items are string or numbers
-// const names: Array<string | number> = []; // string[]
+const names: Array<string | number> = [99, "stored"]; // string[]
 
 // Example 3: Promises as Generics
 const promise: Promise<string> = new Promise((resolve) => {

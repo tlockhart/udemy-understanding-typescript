@@ -5,6 +5,7 @@
 // }
 // const results = merge({name: "Tony"},{age: 89});
 // console.log(results);
+// console.log(results.name);
 // // Example 2: We cannot access specific properties from the results of the merge function
 // const mergedObj = results;
 // const age = mergedObj.age;
@@ -25,8 +26,15 @@
 
 /**
  *  Example 4: Identify the parameter types T (name 
- * and hobbies objects) and U (age object) is redundant
+ * and hobbies objects) and U (age object), will enable 
+ * TypeScript to infer the return type.  Explicitly 
+ * adding the return type to the function declaration,
+ * or adding the return type, during the function call, 
+ * is redundant
  */
-// const mergedObj2 = merge<{name: string, hobbies: string[]}, {age: number}>({name: "Tony", hobbies: ['Bingo']}, {age: 89});
-// console.log("Age:", mergedObj2.age);
+function merge<T extends object, U extends object>(objA: T, objB: U) {
+    return Object.assign(objA, objB);
+}
+const mergedObj2 = merge<{name: string, hobbies: string[]}, {age: number}>({name: "Tony", hobbies: ['Bingo']}, {age: 89});
+console.log("Age:", mergedObj2.age);
 

@@ -5,7 +5,10 @@
 // const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
 // console.log(mergedObj);
 
-// Example 1: Set a custome type for parrams of Generic functions, return a Tuple
+/**
+ * Example 1: Set a custom type for params of Generic
+ * functions, that must include a lengthy property
+ */
 interface Lengthy {
   length: number;
 }
