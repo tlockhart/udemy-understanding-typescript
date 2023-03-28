@@ -6,16 +6,20 @@ function Logger(logString: string) {
 }
 /**
  * Example 1: Create a Decorator Factory that 
- * renders elements to the dom whenever the  
- * component gets rendered
+ * renders template  to the dom whenever the  
+ * component gets instantiated
  */
 function WithTemplate(template: string, hookId: string) {
   /**
    * anonymous function which is actually a 
-   * decorator which adds a header  to a div
+   * decorator which adds a header template  to a div
    **/
   return function(constructor: any) {
+    // return function (_: function){}
     const hookEl = document.getElementById(hookId);
+    /* all the target class constructor and pass 
+   class properties to a template to be rendered
+   */
     const p = new constructor();
     if (hookEl) {
       hookEl.innerHTML = template;
