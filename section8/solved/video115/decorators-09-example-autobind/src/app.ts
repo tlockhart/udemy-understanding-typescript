@@ -18,6 +18,8 @@ class Course {
 
   //Example1: Create a course instance from input data
   const courseForm = document.querySelector("form")!;
+
+  // Add EventListener
   courseForm.addEventListener("submit", event => {
     event.preventDefault();
     const titleEl = document.getElementById("title") as HTMLInputElement;

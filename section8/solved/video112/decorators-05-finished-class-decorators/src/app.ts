@@ -10,45 +10,39 @@ function WithTemplate(template: string, hookId: string) {
   console.log('TEMPLATE FACTORY');
   // Example1: Return a constructor that return an extended constructor
   /**
-   * Note1: Let TypeScript know this is a constructor function 
+   * Note1: new(...args): Lets TypeScript know this is a constructor function 
    * (a function we can call with the new keyword to generate a new object)
    * Note2: The type params of the new constructor must match the signature
-   * of the Person constructor, so we can instantiate it.  Using ..args allows
+   * of the original Person constructor, so we can instantiate it.  Using ..args allows
    * us to pass in any parameters and still match the Person constructor signature.
-   * Note3: The type params of the new constructor must match the signature of the 
-   * extended originalConstructor signature
-   * Note4: Let TypeScript know the Person Object being produced will have a name
+   * Note3: {name: string}: Lets TypeScript know the Person Object being produced will have a name
    * property, which can be access via this.name
-   * Note5: Add a _ to args, so TypeScript know args is not being used as
+   * Note4: Add a _ to args, so TypeScript knows args is not being used as
    * a variable name
-   * /
-   
-   /** 
-    * Example2: IMPORTANT:  The constructor function returned by withTemplate 
-   * will replace our originalConstructor function, so when we instantiate the
-   *  Person class it will run the new extended constructor, instead.  Therefore, 
-   * if we remove the instantiation of the Person class the withTemplate
-   * Decorator function will not get returned, therefore Max will not display in 
-   * the DOM.
    */
+   
   return function<T extends {new(...args: any[]): {name: string}}>(originalConstructor: T) {
     /**
-     * NOTE7: Create new constructor with additional logic,
-     * that extends the class constructor,  which will run when the 
-     * Person class is instantiated.
+     * NOTE5: Override the original Person constructor,
+     * with additional logic,  in order to launch the decorator 
+     * when the Person class is instantiated.
      */
     return class extends originalConstructor {
       constructor(..._args: any[]) {
         super();
+        /********************
+         * New Constructor Logic
+         *********************/
         console.log('Rendering template');
         const hookEl = document.getElementById(hookId);
         // const p = new originalConstructor();
         if (hookEl) {
           hookEl.innerHTML = template;
-          // Use this to access the originalConstructor, not instance p
+          // Use "this." to access the originalConstructor, not instance p
           hookEl.querySelector('h1')!.textContent = this.name;
         }
-      }
+        /********************************/
+      } // constructor
     }
   }
 }

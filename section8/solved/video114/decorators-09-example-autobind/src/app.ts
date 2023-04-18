@@ -1,5 +1,5 @@
 /**
- * Exampld 2: Build a decorator that will autobind the this 
+ * Example 2: Build a decorator that will autobind the this 
  * in the showMessage printer method to the printer object
  * it belongs to
  */
@@ -14,7 +14,10 @@ function Autobind(_target: any, _methodName: string, descriptor: PropertyDescrip
     enumerable: false,
     // Step3: Add a getter to setup the new logic before we execute the function
     get() {
-      // Step4: Bind this ( the printer object is what the this refers to)
+      /**
+       * Step4: Bind this ( this, is whatever triggers the getter 
+       * method, the printer object will launch the getter)
+       */
       const boundFn = originalMethod.bind(this);
       return boundFn;
     }
@@ -26,7 +29,7 @@ function Autobind(_target: any, _methodName: string, descriptor: PropertyDescrip
 class Printer {
   message = 'This works!';
 
-  // Add AutoBind to the showMessage method to bind the this 
+  // Add AutoBind to the showMessage method to bind the this ref
   @Autobind
   showMessage() {
     /**
@@ -43,7 +46,8 @@ const button = document.querySelector('button')!;
 /**
  * Example1: trigger show message on click,
  * bind p to the Printer class, instead of the 
- * button using bind property
+ * button, which is the evenListener target,
+ * using a manual bind property
  */
 // button.addEventListener('click', p.showMessage.bind(p));
 /**

@@ -52,6 +52,8 @@ function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
   console.log(target);
   console.log(name);
   console.log(descriptor);
+  // return a new getter property on the PropertyDescriptor
+  // return {get}
 }
 
 function Log3(
