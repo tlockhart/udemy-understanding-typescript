@@ -2,8 +2,8 @@
  * Register class properties (title, price) and their validators 
  * in ValidatorConfig when the Course class is defined
  */
-//validater blueprint
-// Validator Type Syntax: Course : { price: ["required"], title:["positive"]}
+
+// ValidatorConfig Type Syntax: Course : { price: ["required"], title:["positive"]}
 interface ValidatorConfig {
   [property: string]: {
     [validatableProp: string]: string[]
@@ -12,7 +12,7 @@ interface ValidatorConfig {
 
 /**
  * Important: Initially registeredValidators object is empty, but will be loaded
- *  by Postive and Required decorator on Course class declaration
+ *  by Postive and Required decorator in Course class declaration
  */
 // Syntax: {validatorsConfig,}
 const registeredValidators: ValidatorConfig = {};
@@ -41,12 +41,13 @@ function PositiveNumber(classInstTarget: any, propName: string) {
 }
 
 /**
- * Loops through the course object, creates a 
- * objValidatorConfig Object and loops through 
- * all registeredValidators on the Course object:
- * {price: ["required"], title:["positive"]}
- * And validate if a price or title property is correct
- * if not the data, is correct
+ * validate: Receives the course object, creates an
+ * objValidatorConfig, which contains a list of
+ * registeredValidators.  Loop through the 
+ * registeredValidators {price: ["required"], title:["positive"]}
+ * on the Course object and compare with 
+ * the obj property (title, price) values.  
+ * Determine if the values are exceptable.  
  */
 function validate(obj: any) {
 
@@ -63,7 +64,8 @@ function validate(obj: any) {
    * first determine the name of the class (Course) this object is instantiated
    *  from. Get the object's name (Course) from the constructor property.
    * Then loop through the validatorConfig keys from the object and perform
-   * your validations.
+   * your validations on the obj properties (title, course).
+   * 
    * IMPORTANT: All Validators (Positive and Required) will be registered
    * when the instance variables (title, price) are declared and decorators added
    */
