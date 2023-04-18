@@ -1,89 +1,48 @@
-const employeesData = [
-  {
-    name: "Tony",
-  },
-  {
-    name: "Sammy",
-  },
-];
-function Controller(controllerGreeting: string, targetName: string, employeesData: { name: string }[]) {
-  console.log(controllerGreeting);
-  
-  // Constructor is passed from the Person Class:
-  return function (constructor: typeof Person) {
-    /*******************************
-     * Example 1: Original employeesData
-    ********************************/
-    const person = new constructor(targetName, employeesData);
-    console.log("Controller: Original Employees:", person.employees);
-    // person.updateName("Anthony", "Bobby");
-    // console.log("Person New Name1:", person, person.employees);
-    /***************************/
-    // Return a class with a constructor 
-    return class extends Person {
-      constructor(targetName: string, employeesData: { name: string }[], newName: string = "") {
-        super(targetName, employeesData, newName,);
-      }
-    };
+function Logger(logString: string) {
+  // Step1: Log Logger Factory
+  console.log('LOGGER FACTORY');
+  /**
+   * Step2: MISSING STEP: Call the WithTemplate and 
+   * pass it the Person constructor, because of block scope
+   */
+  return function(constructor: Function) {
+    // Step7: Log the Program Execution Returned
+    console.log(logString);
+    // Step8:  Log Logger Contructor
+    console.log("Logger Constructor:", constructor);
   };
 }
 
-function NameUpdater(nameUpdaterGreeting: string, targetName: string, newName: string, employeesData: { name: string }[]) {
-  console.log(nameUpdaterGreeting);
+function WithTemplate(template: string, hookId: string) {
+ // Step 3: Logs Template Factory
+  console.log('TEMPLATE FACTORY');
   
-  // The constructor is auto passed in from the Controller return stmt
-  return function (constructor: typeof Person) {
-    /**
-     * Override updateName method in person 
-     * constructor passed from Controller
-     * Note: updateName method must have the  
-     * same signature as the Person class.
-     */
-    constructor.prototype.updateName = function (_targetName: string, _newName: string) {
-      // console.log("Employees:", employeesData);
-      const employeeMatch = employeesData.find(
-        (employee: { name: string }) => employee.name === targetName
-      );
-      if (employeeMatch) {
-        employeeMatch.name = newName;
-      } else {
-        console.log(`Could not find employee with name '${targetName}'`);
-      }
-    }; // constructor overide
-
-    /*************************************
-     * Example 2: Updated employeesData
-     * ************************************/
-    const person = new constructor(targetName, employeesData, newName);
-    person.updateName(targetName, newName);
-    console.log("NameUpdater: Update Employees:", person.employees)
-  };
+  return function(constructor: any) {
+    // Step4: Log Rendering Template
+    console.log('Rendering template');
+    const hookEl = document.getElementById(hookId);
+    // Step5: Create new Person instance
+    const p = new constructor();
+    if (hookEl) {
+      hookEl.innerHTML = template;
+      hookEl.querySelector('h1')!.textContent = p.name;
+    }
+    // Step6: Return Execution to the Logger
+  }
 }
 
-// @WithTemplate('<h1>My Person Object</h1>', 'app')
-
-// Multiple Decorators Class: 
-@Controller("Hello from Controller:", "Tony", employeesData)
-@NameUpdater("Hello from NameUpdater:", "Tony", "Anthony", employeesData)
+// Example 1: Nested Decorators execute from Top to Bottom 
+@Logger('Program Execution Returned To Logger')
+@WithTemplate('<h1>My Person Object</h1>', 'app')
 class Person {
-  targetName = "";
-  employees: { name: string }[] = employeesData;
-  constructor(targetName: string, _employeesData: { name: string }[], _newName = "") {
-    this.targetName = targetName;
-    console.log("Person Constructor: Creating person object...");
-  }
+  name = 'Max';
 
-  updateName(updateName: string, targetName: string) {
-    const employeeMatch = this.employees.find(
-      (employee) => employee?.name === targetName
-    )!;
-    employeeMatch.name = updateName;
-    console.log("Person New Name:", this.employees)
+  constructor() {
+    console.log('Creating a new Person instance...');
   }
 }
-/***************************************
- * Example3: Decorator Execution is completely 
- * seperate from class instantiation
- ****************************************/
-// const pers1 = new Person("Tony", employeesData);
-// console.log("Pers1:", pers1); 
+
+// Step 9: Instantiate a new Person instance
+const pers = new Person();
+// Step10: Log the new Person Instance
+console.log("New Person Instance:", pers);
