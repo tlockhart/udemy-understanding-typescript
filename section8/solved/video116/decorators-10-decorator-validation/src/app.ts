@@ -59,19 +59,22 @@ function validate(obj: any) {
 
   console.log("ObjectInstance:", obj);
   /**
-   * Step3: To retrieve the configuration for the object we are dealling with
+   * Step3: To retrieve the configuration for the object we are dealing with
    * first determine the name of the class (Course) this object is instantiated
    *  from. Get the object's name (Course) from the constructor property.
-   * Then get the validatorConfig we set up for that object, by using the
-   * name as the key.
-   * IMPORTANT: All Registers have been added Initally by the Required
-   * Decorator
+   * Then loop through the validatorConfig keys from the object and perform
+   * your validations.
+   * IMPORTANT: All Validators (Positive and Required) will be registered
+   * when the instance variables (title, price) are declared and decorators added
    */
   const objValidatorConfig = registeredValidators[obj.constructor.name];
   console.log("RegisteredValidator:", registeredValidators);
   console.log("Object Name:", obj.constructor.name);
   console.log("Course Object on RegisteredValidator:", objValidatorConfig);
-  // Step4: If an error has been added to the objValidator Config the object is valid
+  /**
+   * Step4: If no decorators have been the instance variables
+   * then, there are no properties to validate, so return true
+   */
   if (!objValidatorConfig) {
     return true;
   }
@@ -124,8 +127,9 @@ function validate(obj: any) {
 
 class Course {
   /**
-   * Step0: All instance variables  are loaded to registeredValidator 
-   * at class declaration
+   * Step0: All instance variables  are loaded in the registeredValidator 
+   * at class declaration.  If you do not add the decorator, 
+   * the objValidatorConfig will be empty
    */
   @Required
   title: string;
